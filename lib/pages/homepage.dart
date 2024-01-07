@@ -53,12 +53,10 @@ class _WeatherPageState extends State<WeatherPage> {
     try {
       final WeatherModel data =
           await apiService.getWeatherDataForCurrentLocation();
-      print('Got weather data: $data');
       setState(() {
         weatherData = data;
       });
     } catch (e) {
-      print('Failed to get weather data: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to load weather data')),
       );
