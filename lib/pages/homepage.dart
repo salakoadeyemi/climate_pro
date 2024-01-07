@@ -12,6 +12,7 @@ class _WeatherPageState extends State<WeatherPage> {
   final ApiService apiService = ApiService();
   WeatherModel? weatherData;
   bool isLocationServiceEnabled = true;
+  bool isLoading = false;
   late LocationPermission permission;
 
   @override
@@ -25,6 +26,9 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   Future<void> getWeatherDataForCurrentLocation() async {
+    setState(() {
+      isLoading = true;
+    });
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -61,6 +65,9 @@ class _WeatherPageState extends State<WeatherPage> {
         SnackBar(content: Text('Failed to load weather data')),
       );
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   Future<void> getWeatherData(String cityName) async {
@@ -123,9 +130,16 @@ class _WeatherPageState extends State<WeatherPage> {
             SizedBox(
               height: 16,
             ),
+            // isLoading ? CircularProgressIndicator() : SizedBox.shrink(),
             ElevatedButton(
-              onPressed: getWeatherDataForCurrentLocation,
-              child: Text('Get Weather for Current Location'),
+              onPressed: isLoading ? null : getWeatherDataForCurrentLocation,
+              child: isLoading
+                  ? SizedBox(
+                      width: 20.0,
+                      height: 20.0,
+                      child: CircularProgressIndicator(),
+                    )
+                  : Text('Get Weather for Current Location'),
             ),
             SizedBox(
               height: 16,
