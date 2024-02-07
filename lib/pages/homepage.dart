@@ -130,6 +130,7 @@ class _WeatherPageState extends State<WeatherPage> {
             SizedBox(
               height: 16,
             ),
+
             // isLoading ? CircularProgressIndicator() : SizedBox.shrink(),
             ElevatedButton(
               onPressed: isLoading ? null : getWeatherDataForCurrentLocation,
