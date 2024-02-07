@@ -36,8 +36,10 @@ class _WeatherPageState extends State<WeatherPage> {
         // User denied permissions, show a message to the user
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                  'Please grant location permissions to get weather data')),
+            content: Text(
+              'Please grant location permissions to get weather data',
+            ),
+          ),
         );
         return Future.error('Location permissions are denied');
       }
