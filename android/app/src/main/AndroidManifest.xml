@@ -2,7 +2,7 @@
 package="com.climate.pro">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
-        android:label="climate_pro"
+        android:label="Climate pro"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

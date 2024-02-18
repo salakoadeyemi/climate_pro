@@ -91,105 +91,110 @@ class _WeatherPageState extends State<WeatherPage> {
       appBar: AppBar(
         title: Text('Weather App'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            weatherData != null
-                ? Column(
-                    children: [
-                      Text(
-                        '${weatherData!.temperature.toStringAsFixed(1)}°C',
-                        style: TextStyle(
-                          fontSize: 48,
-                        ),
-                      ),
-                      Text(
-                        '${weatherData!.cityName}, ${weatherData!.countryName}',
-                        style: TextStyle(
-                          fontSize: 24,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.network(
-                            'http://openweathermap.org/img/w/${weatherData!.weatherIcon}.png',
-                            scale: 0.6,
-                            alignment: Alignment.center,
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              weatherData != null
+                  ? Column(
+                      children: [
+                        Text(
+                          '${weatherData!.temperature.toStringAsFixed(1)}°C',
+                          style: TextStyle(
+                            fontSize: 48,
                           ),
-                          Text(
-                            '${weatherData!.weatherDescription}',
-                            style: TextStyle(
-                              fontSize: 18,
+                        ),
+                        Text(
+                          '${weatherData!.cityName}, ${weatherData!.countryName}',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              'http://openweathermap.org/img/w/${weatherData!.weatherIcon}.png',
+                              scale: 0.6,
+                              alignment: Alignment.center,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                : CircularProgressIndicator(),
-            SizedBox(
-              height: 16,
-            ),
-
-            // isLoading ? CircularProgressIndicator() : SizedBox.shrink(),
-            ElevatedButton(
-              onPressed: isLoading ? null : getWeatherDataForCurrentLocation,
-              child: isLoading
-                  ? SizedBox(
-                      width: 20.0,
-                      height: 20.0,
-                      child: CircularProgressIndicator(),
+                            Text(
+                              '${weatherData!.weatherDescription}',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     )
-                  : Text('Get Weather for Current Location'),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextField(
-                onSubmitted: (value) {
-                  getWeatherData(value);
-                },
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.location_city,
-                    color: Colors.grey,
-                  ),
-                  labelText: 'Enter a City',
-                  labelStyle: TextStyle(
-                    color: Colors.grey.shade700,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'sans-serif',
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(
+                  : CircularProgressIndicator(),
+              SizedBox(
+                height: 16,
+              ),
+
+              // isLoading ? CircularProgressIndicator() : SizedBox.shrink(),
+              ElevatedButton(
+                onPressed: isLoading ? null : getWeatherDataForCurrentLocation,
+                child: isLoading
+                    ? SizedBox(
+                        width: 20.0,
+                        height: 20.0,
+                        child: CircularProgressIndicator(),
+                      )
+                    : Text('Get Weather for Current Location'),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                  onSubmitted: (value) {
+                    getWeatherData(value);
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.location_city,
                       color: Colors.grey,
                     ),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "Lagos, London...",
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'sans-serif',
+                    labelText: 'Enter a City',
+                    labelStyle: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'sans-serif',
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: "Lagos, London...",
+                    hintStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'sans-serif',
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
